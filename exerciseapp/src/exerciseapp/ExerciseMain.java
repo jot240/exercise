@@ -14,6 +14,7 @@ public class ExerciseMain {
 	SQLException, FileNotFoundException, IOException {
 		DBConnection dbc = new DBConnection();
 		try {
+			dbc.CreateExercise(10, "burpees", "cardio", 11);
 			ResultSet rs = dbc.executeQuery("exercise", "type");
 			while(rs.next()) {
 				System.out.println(rs.getString(1) + ", ");
