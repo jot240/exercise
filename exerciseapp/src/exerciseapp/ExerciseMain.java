@@ -16,12 +16,14 @@ public class ExerciseMain {
 		try {
 			dbc.CreateExercise(10, "burpees", "cardio", 11);
 			ResultSet rs = dbc.executeQuery("exercise", "type");
+			System.out.println("max ID " + dbc.MaxID());
+			dbc.CleanUpExercise();
 			while(rs.next()) {
 				System.out.println(rs.getString(1) + ", ");
 			}
 			System.out.println();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			// 
 			e.printStackTrace();
 		}
 		finally {

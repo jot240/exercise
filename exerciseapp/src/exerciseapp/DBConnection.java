@@ -75,8 +75,34 @@ public class DBConnection {
 		finally {
 		}
 	}
-	
-	
+	public void CleanUpExercise() throws Exception {
+	//for removing duplicates in db
+		try {
+		String remove = "DELETE e1 from exercise e1 INNER JOIN exercise e2 WHERE e1.name = e2.name AND e1.id >= e2.id ";
+		ppstmt = con.prepareStatement(remove);
+		ppstmt.executeUpdate();
+		}
+		catch(Exception e){
+			throw e;
+		}
+	}
+	public int MaxID() throws Exception{
+		try {
+			int maxID = 1;
+			String getMax ="Select MAX(id) as maxID from exercise";
+			ppstmt = con.prepareStatement(getMax);
+			resultSet = ppstmt.executeQuery();
+			while(resultSet.next()) {
+				maxID = resultSet.getInt(maxID);
+			}
+			return maxID;
+			
+		}
+		catch(Exception e){
+			throw e;
+			
+		}
+	}
 	  public void close() {
 	        try {
 	            if (resultSet != null) {
